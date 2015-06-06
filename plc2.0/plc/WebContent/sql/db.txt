@@ -1,0 +1,154 @@
+﻿CREATE TABLE plc_teacher(
+	t_id VARCHAR(20),
+	t_name VARCHAR(20),
+	t_gender VARCHAR(10),
+	t_roleid INT(10),
+	t_majorid INT(10),
+	t_userid VARCHAR(20),
+	PRIMARY KEY (t_id)
+);
+
+CREATE TABLE plc_school(
+	s_id INT(10),
+	s_name VARCHAR(20),
+	PRIMARY KEY (s_id)
+);
+
+CREATE TABLE plc_major(
+	m_id INT(10),
+	m_name VARCHAR(20),
+	m_schoolid INT(10),
+	PRIMARY KEY (m_id)
+);
+
+CREATE TABLE plc_experiment(
+	e_id INT(10),
+	e_name VARCHAR(20),
+	e_teacherid INT(10),
+	PRIMARY KEY (e_id)
+);
+
+CREATE TABLE plc_experiment_record(
+	er_id INT(10),
+	er_code TEXT,
+	er_result VARCHAR(20),
+	er_studentid INT(10),
+	er_experimentid INT(10),
+	er_date DATE,
+	PRIMARY KEY (er_id)
+);
+
+CREATE TABLE plc_score(
+	s_id INT(10),
+	s_experimentid INT(10),
+	s_score INT(10),
+	s_studentid VARCHAR(20),
+	PRIMARY KEY (s_id)
+);
+
+CREATE TABLE plc_department(
+	d_id INT(10),
+	d_name VARCHAR(20),
+	d_majorid INT(10),
+	PRIMARY KEY (d_id)
+);
+
+CREATE TABLE plc_source(
+	s_id INT(10),
+	s_url VARCHAR(30),
+	s_name VARCHAR(20),
+	s_teacherid VARCHAR(20),/*上传资料教师*/
+	s_sourcetypeid INT(10),
+	PRIMARY KEY (s_id)
+);
+
+
+CREATE TABLE plc_source_type(
+	st_id INT(10),
+	st_name VARCHAR(20),
+	PRIMARY KEY (st_id)
+);
+
+CREATE TABLE plc_student_sign(
+/*学生出勤表*/
+	ss_id INT(10),
+	ss_numer INT(10),   /*学生登录次数*/
+	ss_studentid VARCHAR(20),
+	PRIMARY KEY (ss_id)
+);
+
+CREATE TABLE plc_appointment(
+	a_id INT(10),
+	a_experimentid INT(10),
+	a_studentid VARCHAR(20),
+	a_date DATE,/*预约时间*/
+	PRIMARY KEY (a_id)
+);
+
+CREATE TABLE plc_appointment_status(
+/*预约状态*/
+	as_id INT(10),
+	as_appointmentid INT(10),
+	as_name VARCHAR(20),/*状态名,是否可执行*/
+	PRIMARY KEY (as_id)
+);
+
+
+CREATE TABLE plc_right(
+/*权限表*/
+	r_id INT(10),
+	r_name VARCHAR(20),
+	PRIMARY KEY (r_id)
+);
+
+
+CREATE TABLE plc_role(
+/*角色表*/
+	r_id INT(10),
+	r_name VARCHAR(20),
+	PRIMARY KEY (r_id)
+);
+
+
+
+
+CREATE TABLE plc_right_role(
+/*角色权限关联表*/
+	rr_roleid INT(10),
+	rr_right_id INT(10)
+
+);
+
+CREATE TABLE plc_role_user(
+/*角色账户管理表*/
+	rr_userid INT(10),
+	rr_roleid INT(10)
+
+);
+CREATE TABLE plc_control_url(
+/*url操作表*/
+	cu_id INT(10),
+	cu_url VARCHAR(30),
+	PRIMARY KEY(cu_id)
+);
+
+
+
+
+CREATE TABLE plc_right_control(
+/*权限和可操作的url关联表*/
+	rc_rightid INT(10),
+	rc_controlurl INT(10)
+);
+
+CREATE TABLE plc_right_source(
+/*权限与资源关联表*/
+	rs_rightid INT(10),
+	rc_sourceid INT(10)
+);
+
+
+
+
+
+
