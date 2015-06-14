@@ -14,10 +14,11 @@
 </head>
 <body>
 	<%
+		String userid = (String)request.getSession().getAttribute("userName");
 		ArrayList<Forum> list = new ArrayList<Forum>();
 		ForumDao forumDao = new ForumDao();
 		ReplyDao replyDao = new ReplyDao();
-		list = forumDao.queryAllPost();
+		list = forumDao.queryMyPost(userid);
 		
 		int pageSize = 10;
 		int showPage;
@@ -72,7 +73,7 @@
 
 	</div>
 	<div id="featured">
-		<div><h2>问题讨论:</h2></div>
+		<div><h2>我的帖子:</h2></div>
 		<div class="table">
 			<table class="hovertable">
 				<tr>
@@ -87,7 +88,7 @@
 					<td><%=forum.getF_type() %></td>
 					<td><%=forum.getF_userid() %></td>
 					<td><%=forum.getF_publishdate() %></td>
-					<td><%=replyDao.queryReplyCount(forum.getF_id()) %></td> 
+					<td>回复数:<%=replyDao.queryReplyCount(forum.getF_id()) %></td> 
 				</tr>
 				<%} %>
 			</table>
@@ -112,9 +113,9 @@
 			 </form>  -->
 			 </center>
 			<br>
-			<br>
+			<!-- <br>
 			<a href="mypost.jsp" class="post">我发布的帖子</a>
-			<br>
+			<br> -->
 			<br>
 			<div class="leav fl" style="border:1px #ccc solid;">
 				<form action="../ForumServlet" method="post">

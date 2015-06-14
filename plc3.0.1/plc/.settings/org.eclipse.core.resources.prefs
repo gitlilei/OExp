@@ -1,3 +1,6 @@
-#Tue Jun 02 11:06:30 CST 2015
+#Wed Jun 10 20:41:09 CST 2015
 eclipse.preferences.version=1
 encoding//WebContent/student/css/style.css=UTF-8
+encoding//src/com/csust/servlet/error/ErrorDo.java=gbk
+encoding//src/com/csust/utils/dbutils/JdbcUtils.java=gbk
+encoding/<project>=gbk

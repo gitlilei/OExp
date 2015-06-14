@@ -38,34 +38,27 @@ public class LoginFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		String noFilter = config.getInitParameter("nologinfilter");
-System.out.println();
-System.out.println("得到nofilter配置的初值:"+noFilter);
+
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String uri=req.getRequestURI();
-System.out.println("得到uri "+uri);
+		
 		if(noFilter!=null){
 			String[] pass=noFilter.split(";");
-System.out.print("过滤的url:  ");
+
 			for(int i=0;i<pass.length;i++){
 				if(pass[i]==null||"".equals(pass[i])) continue;
-System.out.print(pass[i]+" ");
+
 				if(uri.indexOf(pass[i])!=-1){
 					chain.doFilter(request, response);
 					return;
 				}
 			}
 		}
-/*		if(uri.endsWith(".js")||uri.endsWith(".css")){
-			chain.doFilter(request, response);//如果请求的js/css页面uri可以放行.
-			//return;
-			
-		}
-		*/
 		
 		String userName = (String) req.getSession().getAttribute("userName");
-System.out.print("userName: "+userName + " req.getContexPath(): "+req.getContextPath());
-		if(userName==null&&!uri.endsWith(".js")&&!uri.endsWith(".css")){//如果请求的文件userName为空,请求的不是js/css文件   true执行跳转;
+
+		if(userName==null&&!uri.endsWith(".js")&&!uri.endsWith(".css")){//锟斤拷锟斤拷锟斤拷锟斤拷锟侥硷拷userName为锟斤拷,锟斤拷锟斤拷牟锟斤拷锟絡s/css锟侥硷拷   true执锟斤拷锟斤拷转;
 			String url=req.getContextPath()+"/"+"login.jsp";
 			resp.sendRedirect(url);
 		}else{
